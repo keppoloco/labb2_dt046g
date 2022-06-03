@@ -21,9 +21,45 @@
     <ClCompile Include="Quick_sort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Insertionsort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Selectionsort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Standardsort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Measurement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GenerateData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="quicksort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="insertionsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="selectionsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="standardsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="measurement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="generatedata.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -139,11 +139,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GenerateData.cpp" />
+    <ClCompile Include="Measurement.cpp" />
+    <ClCompile Include="Insertionsort.cpp" />
     <ClCompile Include="Quick_sort.cpp" />
+    <ClCompile Include="Selectionsort.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Standardsort.cpp" />
+    <ClCompile Include="timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="generatedata.h" />
+    <ClInclude Include="measurement.h" />
+    <ClInclude Include="insertionsort.h" />
     <ClInclude Include="quicksort.h" />
+    <ClInclude Include="selectionsort.h" />
+    <ClInclude Include="standardsort.h" />
+    <ClInclude Include="timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

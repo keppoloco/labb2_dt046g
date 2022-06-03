@@ -1,7 +1,13 @@
 #include "selectionsort.h"
 
-void selection_sort(std::vector<float>* dataset) {
-	const int size = dataset->size();
+
+void selection_sort(std::vector<int>::iterator first, std::vector<int>::iterator last) {
+	for (; first != last; ++first) {
+		auto min_value = std::min_element(first, last);
+		std::iter_swap(min_value, first);
+	}
+	assert(std::is_sorted(first, last));
+	/*const int size = dataset->size();
 
 	for (int i = 0; i < size - 1; i++) {
 		int m_index = i;
@@ -11,5 +17,5 @@ void selection_sort(std::vector<float>* dataset) {
 			}
 		}
 		std::swap(dataset->at(m_index), dataset->at(i));
-	}
+	}*/
 }

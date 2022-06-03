@@ -4,7 +4,7 @@
 #include <vector>
 
 
-void insertion_sort(std::vector<float>* dataset);
+void insertion_sort(std::vector<int>* dataset);
 
 
 #endif // !"INSERTIONSORT_H"
