@@ -9,36 +9,57 @@
 #include <fstream>
 #include "generatedata.h"
 
-const int DATASET = 300;
-const int REPETITIONS = 15;
+const int SIZE = 300;
+const int REPETITIONS = 10;
+const int SAMPLES = 20;
+
+double timeIt(void(*sort)(std::vector<int>::iterator, std::vector<int>::iterator), std::vector<int> data);
 
 int main() {
-	std::string files[] = { "standard_sort.txt", "insertion_sort.txt", "selection_sort.data", "quick_sort_rp.txt", "quick_sort_med.txt", "sort.txt" };
 	std::vector<int> data;
-	std::vector<int>* copy = nullptr;
+	std::vector<int> copy;
+	std::vector<double> period(SAMPLES);
+
 	
+
+	std::string file[] = { "standard_sort.data", "insertion_sort_rand.data", "selection_sort.data", "quick_sort_rp.data", "quick_sort_med.data" };
 	std::ofstream os;
+	os.open(file[1], std::ios::out | std::ios::app);
 
-	os.open(files[0], std::ios::out | std::ios::app);
-	if (os.is_open()) {
+	if (os.is_open())
+	{
 		os << "N\t" << "T[ms]\t" << "dev[ms]\t" << "Samples\n";
-		std::vector<double> period;
-		period.resize(REPETITIONS);
-
-		for (int i = 1; i <= REPETITIONS; i++) {
-			data.resize(DATASET * i);
+		int increment = 0;
+		for (int iter = 1; iter <= REPETITIONS; iter++)
+		{
+			increment++;
+			data.resize(SIZE * increment);
 			random_values(data);
- 			copy = &data;
-			period[i-1] = (time(standardsort, copy));
 
-			os << DATASET * i << "\t" << average_value(period) << "\t" << std_dev(period) << "\t" << REPETITIONS << '\n';
+			for (int i = 0; i < SAMPLES; i++) 
+			{
+				// Copy dataset
+				copy = data;
+				// run it
+				period[i] = time(&insertion_sort, copy);
+			}
+			os << SIZE * increment << "\t" << average_value(period) << "\t" << std_dev(period) << "\t" << SAMPLES << '\n';
 		}
+		os.close();
 	}
-	os.close();
 
-	for (auto it = copy->begin(); it != copy->end(); it++) {
+	for (auto it = copy.begin(); it != copy.end(); it++) {
 		std::cout << *it << '\n';
 	}
 
 	return 0;
+}
+
+double timeIt(void(*sort)(std::vector<int>::iterator, std::vector<int>::iterator), std::vector<int> data)
+{
+	auto start = std::chrono::high_resolution_clock::now();
+	sort(data.begin(), data.end());
+	auto stop = std::chrono::high_resolution_clock::now();
+
+	return std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
 }

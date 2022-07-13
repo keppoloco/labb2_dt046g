@@ -5,6 +5,6 @@
 #include <algorithm>
 #include <vector>
 
-double time(void(*sort)(std::vector<int>::iterator, std::vector<int>::iterator), std::vector<int> *data);
+double time(void(*sort)(std::vector<int>::iterator, std::vector<int>::iterator), std::vector<int> &data);
 
 #endif

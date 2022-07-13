@@ -1,16 +1,9 @@
 #include "insertionsort.h"
 
-void insertion_sort(std::vector<int>* dataset) {
-	const int size = dataset->size();
+void insertion_sort(std::vector<int>::iterator first, std::vector<int>::iterator last) {
 
-	for (int i = 1; i < size; i++) {
-		int key = dataset->at(i);
-		int index = i - 1;
-
-		while (index >= 0 && dataset->at(index) > key) {
-			dataset->at(index + 1) = dataset->at(index);
-			index -= 1;
-		}
-		dataset->at(index + 1) = key;
+	for (auto iter = first; iter != last; ++iter) {
+		std::rotate(std::upper_bound(first, iter, *iter), iter, iter + 1);
 	}
+	assert(std::is_sorted(first, last));
 }
