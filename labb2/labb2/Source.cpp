@@ -9,7 +9,7 @@
 #include <fstream>
 #include "generatedata.h"
 
-const int SIZE = 300;
+const int SIZE = 200;
 const int REPETITIONS = 10;
 const int SAMPLES = 20;
 
@@ -20,11 +20,9 @@ int main() {
 	std::vector<int> copy;
 	std::vector<double> period(SAMPLES);
 
-	
-
-	std::string file[] = { "standard_sort.data", "insertion_sort_rand.data", "selection_sort.data", "quick_sort_rp.data", "quick_sort_med.data" };
+	std::string file[] = { "standard_sort.data", "insertion_sort_rand.data", "selection_sort.data", "quick_sort_rp_const.data", "quick_sort_med_rand.data" };
 	std::ofstream os;
-	os.open(file[1], std::ios::out | std::ios::app);
+	os.open(file[3], std::ios::out | std::ios::app);
 
 	if (os.is_open())
 	{
@@ -34,14 +32,14 @@ int main() {
 		{
 			increment++;
 			data.resize(SIZE * increment);
-			random_values(data);
+			increasing_values(data);
 
 			for (int i = 0; i < SAMPLES; i++) 
 			{
 				// Copy dataset
 				copy = data;
 				// run it
-				period[i] = time(&insertion_sort, copy);
+				period[i] = time(&quick_sort, copy.begin(), copy.end());
 			}
 			os << SIZE * increment << "\t" << average_value(period) << "\t" << std_dev(period) << "\t" << SAMPLES << '\n';
 		}
