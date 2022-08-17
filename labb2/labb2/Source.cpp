@@ -9,9 +9,9 @@
 #include <fstream>
 #include "generatedata.h"
 
-const int SIZE = 200;
+const int SIZE = 300;
 const int REPETITIONS = 10;
-const int SAMPLES = 20;
+const int SAMPLES = 10;
 
 double timeIt(void(*sort)(std::vector<int>::iterator, std::vector<int>::iterator), std::vector<int> data);
 
@@ -20,9 +20,9 @@ int main() {
 	std::vector<int> copy;
 	std::vector<double> period(SAMPLES);
 
-	std::string file[] = { "standard_sort.data", "insertion_sort_rand.data", "selection_sort.data", "quick_sort_rp_const.data", "quick_sort_med_rand.data" };
+	std::string file[] = { "standard_sort_dec.data", "insertion_sort_rand.data", "selection_sort_dec.data", "quick_sort_rp_const.data", "quick_sort_med_rand.data" };
 	std::ofstream os;
-	os.open(file[3], std::ios::out | std::ios::app);
+	os.open(file[2], std::ios::out | std::ios::app);
 
 	if (os.is_open())
 	{
@@ -32,22 +32,18 @@ int main() {
 		{
 			increment++;
 			data.resize(SIZE * increment);
-			increasing_values(data);
+			decreasing_values(data);
 
 			for (int i = 0; i < SAMPLES; i++) 
 			{
 				// Copy dataset
 				copy = data;
 				// run it
-				period[i] = time(&quick_sort, copy.begin(), copy.end());
+				period[i] = time(&selection_sort, copy.begin(), copy.end());
 			}
 			os << SIZE * increment << "\t" << average_value(period) << "\t" << std_dev(period) << "\t" << SAMPLES << '\n';
 		}
 		os.close();
-	}
-
-	for (auto it = copy.begin(); it != copy.end(); it++) {
-		std::cout << *it << '\n';
 	}
 
 	return 0;
