@@ -13,7 +13,6 @@ void quick_sort(std::vector<int>::iterator first, std::vector<int>::iterator las
 
 	quick_sort(first, leftIterator);
 	quick_sort(rightIterator, last);
-	assert(std::is_sorted(leftIterator, rightIterator));
 }
 
 void quick_sort_median_three(std::vector<int>::iterator first, std::vector<int>::iterator last) {
@@ -28,5 +27,4 @@ void quick_sort_median_three(std::vector<int>::iterator first, std::vector<int>:
 
 	quick_sort_median_three(first, lower);
 	quick_sort_median_three(higher, last);
-	assert(std::is_sorted(lower, higher));
 }

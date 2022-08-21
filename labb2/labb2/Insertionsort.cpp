@@ -7,5 +7,4 @@ void insertion_sort(std::vector<int>::iterator first, std::vector<int>::iterator
 	for (auto iter = first; iter != last; ++iter) {
 		std::rotate(std::upper_bound(first, iter, *iter), iter, iter + 1);
 	}
-	assert(std::is_sorted(first, last));
 }
